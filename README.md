@@ -53,7 +53,7 @@ Modal One draws on prior work in this area, including [k23](https://github.com/J
 
 ### Documentation
 
-Decisions are recorded as ADRs under `docs/adr/` (written in Japanese). ADR-000001 defines the project's principles.
+Decisions are recorded as ADRs under `docs/adr/` (written in Japanese). ADR-000001 defines the project's principles. Frontmatter follows the [DocDag](https://github.com/Kaikei-e/DocDag) ADR preset; `docdag validate` checks the graph.
 
 ### License
 

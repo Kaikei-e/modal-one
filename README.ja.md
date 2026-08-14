@@ -55,7 +55,7 @@ Modal Oneは[k23](https://github.com/JonasKruckenberg/k23)、[wasmtime](https://
 
 ### ドキュメント
 
-意思決定は`docs/adr/`配下にADRとして記録します（日本語）。ADR-000001がプロジェクトの原則を定義します。
+意思決定は`docs/adr/`配下にADRとして記録します（日本語）。ADR-000001がプロジェクトの原則を定義します。frontmatterは[DocDag](https://github.com/Kaikei-e/DocDag)のADRプリセットに合わせており、`docdag validate`でグラフを検証できます。
 
 ### ライセンス
 
