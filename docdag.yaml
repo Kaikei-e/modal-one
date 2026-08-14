@@ -1,0 +1,4 @@
+preset: adr
+dir: docs/adr
+id_width: 4
+template: docs/adr/template.md
