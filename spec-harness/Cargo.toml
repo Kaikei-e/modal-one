@@ -5,3 +5,4 @@ edition = "2024"
 
 [dependencies]
 modal-one-core = { path = "../modal-one-core" }
+wat = "1.259.0"
