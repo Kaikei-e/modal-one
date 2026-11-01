@@ -1,6 +1,6 @@
 # Modal One
 
-An experimental WebAssembly kernel for RISC-V, written from scratch in Rust.
+An experimental WebAssembly kernel for x86_64, written from scratch in Rust.
 
 [日本語](README.ja.md)
 
@@ -19,7 +19,7 @@ Rough roadmap (non-binding):
 | Phase | Goal | Status |
 |-------|------|--------|
 | 0 | `no_std` Wasm core interpreter (decoder / validator / executor), running on the host | not started |
-| 1 | Boot on bare-metal RISC-V (QEMU `virt`): UART, allocator, interpreter | not started |
+| 1 | Boot on bare-metal x86_64 (QEMU/KVM + UEFI): serial I/O, allocator, interpreter | not started |
 | 2 | Minimal hand-written WASI subset; run a `wasm32-wasip1` "Hello, World!" | not started |
 | 3 | Inter-module calls (IPC) and measurement of sandbox boundary costs | not started |
 
@@ -27,7 +27,7 @@ Rough roadmap (non-binding):
 
 - **Interpreter only.** No JIT.
 - **`no_std` from day one.** The execution path depends on `core` and `alloc` only.
-- **Target:** riscv64, QEMU `virt` machine. Physical hardware is out of scope.
+- **Target:** x86_64, QEMU/KVM with OVMF (UEFI). Physical hardware is out of scope.
 - **Wasm 1.0 (MVP) subset first.** Features from Wasm 2.0/3.0 are adopted individually and documented in ADRs.
 - **Thin system-interface layer.** WASI support starts as a small hand-written p1-style subset, kept separate from the core so it can track the evolving WASI / Component Model standards.
 - **Single-core for now.** SMP is not a current goal but is deliberately not ruled out.
@@ -49,11 +49,11 @@ AI tools are used for study, design discussion, and review — not for generatin
 
 ### Prior art and references
 
-Modal One draws on prior work in this area, including [k23](https://github.com/JonasKruckenberg/k23), [wasmtime](https://github.com/bytecodealliance/wasmtime), [Theseus](https://github.com/theseus-os/Theseus), [Mewz](https://github.com/mewz-project/mewz), and the [WebAssembly specification](https://webassembly.github.io/spec/). These are references, not competitors; if you need something that works, use them.
+Modal One draws on prior work in this area, including [k23](https://github.com/JonasKruckenberg/k23), [wasmtime](https://github.com/bytecodealliance/wasmtime), [Theseus](https://github.com/theseus-os/Theseus), [RedLeaf](https://github.com/mars-research/redleaf), [Mewz](https://github.com/mewz-project/mewz), [Munal OS](https://github.com/Askannz/munal-os), and the [WebAssembly specification](https://webassembly.github.io/spec/). These are references, not competitors; if you need something that works, use them.
 
 ### Documentation
 
-Decisions are recorded as ADRs under `docs/adr/` (written in Japanese). ADR-000001 defines the project's principles. Frontmatter follows the [DocDag](https://github.com/Kaikei-e/DocDag) ADR preset; `docdag validate` checks the graph.
+Decisions are recorded as ADRs under `docs/adr/` (written in Japanese). ADR-000001 defines the project's principles (with target architecture updated to x86_64 in ADR-000004). Frontmatter follows the [DocDag](https://github.com/Kaikei-e/DocDag) ADR preset; `docdag validate` checks the graph.
 
 ### License
 

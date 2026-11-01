@@ -1,7 +1,7 @@
 # Modal One
 
-> An experimental WebAssembly kernel for RISC-V, written from scratch in Rust.
-実験的なRISC-V用WebAssemblyカーネル、Rustで手書きされたものです。
+> An experimental WebAssembly kernel for x86_64, written from scratch in Rust.
+実験的なx86_64用WebAssemblyカーネル、Rustで手書きされたものです。
 
 
 [English](README.md)
@@ -21,7 +21,7 @@ Modal Oneは、WebAssemblyを唯一の実行環境とする最小のカーネル
 | Phase | 目標 | 状態 |
 |-------|------|------|
 | 0 | `no_std`のWasmコアインタプリタ（デコーダ／バリデータ／実行器）をホスト上で動かす | 未着手 |
-| 1 | ベアメタルRISC-V（QEMU `virt`）でのブート: UART・アロケータ・インタプリタ | 未着手 |
+| 1 | ベアメタルx86_64（QEMU/KVM + UEFI）でのブート: シリアル出力・アロケータ・インタプリタ | 未着手 |
 | 2 | WASI最小サブセットの手書き実装。`wasm32-wasip1`のHello, World!を実行 | 未着手 |
 | 3 | モジュール間呼び出し（IPC）とサンドボックス境界コストの計測 | 未着手 |
 
@@ -29,7 +29,7 @@ Modal Oneは、WebAssemblyを唯一の実行環境とする最小のカーネル
 
 - **インタプリタのみ。** JITは行いません。
 - **初日から`no_std`。** 実行パスは`core`と`alloc`のみに依存します。
-- **ターゲット:** riscv64、QEMU `virt`マシン。物理ハードウェアはスコープ外です。
+- **ターゲット:** x86_64、QEMU/KVM（OVMF UEFI）。物理ハードウェアはスコープ外です。
 - **Wasm 1.0（MVP）サブセットから開始。** Wasm 2.0/3.0の機能は個別に採用し、ADRに記録します。
 - **薄いシステムインターフェース層。** WASIはp1相当の小さな手書きサブセットから始め、コアから分離して、進行中のWASI / Component Model標準に追従できる構造を保ちます。
 - **当面はシングルコア。** SMPは現在の目標ではありませんが、意図的に排除もしていません。
@@ -51,11 +51,11 @@ AIツールは学習・設計の壁打ち・レビューに使い、実行パス
 
 ### 先行研究・参考文献
 
-Modal Oneは[k23](https://github.com/JonasKruckenberg/k23)、[wasmtime](https://github.com/bytecodealliance/wasmtime)、[Theseus](https://github.com/theseus-os/Theseus)、[Mewz](https://github.com/mewz-project/mewz)、[WebAssembly仕様](https://webassembly.github.io/spec/)などの先行する仕事を参照しています。これらは参考文献であって競合ではありません。動くものが必要なら、それらを使ってください。
+Modal Oneは[k23](https://github.com/JonasKruckenberg/k23)、[wasmtime](https://github.com/bytecodealliance/wasmtime)、[Theseus](https://github.com/theseus-os/Theseus)、[RedLeaf](https://github.com/mars-research/redleaf)、[Mewz](https://github.com/mewz-project/mewz)、[Munal OS](https://github.com/Askannz/munal-os)、[WebAssembly仕様](https://webassembly.github.io/spec/)などの先行する仕事を参照しています。これらは参考文献であって競合ではありません。動くものが必要なら、それらを使ってください。
 
 ### ドキュメント
 
-意思決定は`docs/adr/`配下にADRとして記録します（日本語）。ADR-000001がプロジェクトの原則を定義します。frontmatterは[DocDag](https://github.com/Kaikei-e/DocDag)のADRプリセットに合わせており、`docdag validate`でグラフを検証できます。
+意思決定は`docs/adr/`配下にADRとして記録します（日本語）。ADR-000001がプロジェクトの原則を定義します（基準ターゲットはADR-000004にてx86_64へ更新）。frontmatterは[DocDag](https://github.com/Kaikei-e/DocDag)のADRプリセットに合わせており、`docdag validate`でグラフを検証できます。
 
 ### ライセンス
 
