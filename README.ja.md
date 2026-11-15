@@ -38,7 +38,7 @@ Modal Oneは、WebAssemblyを唯一の実行環境とする最小のカーネル
 
 実行パス — バイナリデコーダ（LEB128を含む）、バリデータ、インタプリタ、カーネル、WASI実装 — は`wasmparser`等の実装クレートを使わず手書きします。
 
-器具は別扱いです。テストハーネスは公式のWebAssemblyスペックテストスイート（およびそれを駆動するwastパーサ）を使い、ゲストプログラムはRust標準の`wasm32`ターゲットでビルドし、[wasmtime](https://github.com/bytecodealliance/wasmtime)は差分テストの基準器および参照実装として利用します。
+器具は別扱いです。テストハーネスは公式のWebAssemblyスペックテストスイート（およびそれを駆動するwastパーサ）を使い、ゲストプログラムはRust標準の`wasm32`ターゲットでビルドし、[wasmtime](https://github.com/bytecodealliance/wasmtime)や[wasmi](https://github.com/wasmi-labs/wasmi)などの既存ランタイムは差分テストの基準器および参照実装として利用します。どのランタイムをどの対応範囲の基準器にするかはADR-000003で定めます。
 
 AIツールは学習・設計の壁打ち・レビューに使い、実行パスのコード生成には使いません。
 
@@ -55,7 +55,7 @@ Modal Oneは[k23](https://github.com/JonasKruckenberg/k23)、[wasmtime](https://
 
 ### ドキュメント
 
-意思決定は`docs/adr/`配下にADRとして記録します（日本語）。ADR-000001がプロジェクトの原則を定義します（基準ターゲットはADR-000004にてx86_64へ更新）。frontmatterは[DocDag](https://github.com/Kaikei-e/DocDag)のADRプリセットに合わせており、`docdag validate`でグラフを検証できます。
+意思決定は`docs/adr/`配下にADRとして記録します（日本語）。ADR-000001がプロジェクトの原則を定義します（基準ターゲットはADR-000004にてx86_64へ更新。差分テスト基準器の選定はADR-000005にてADR-000003へ委任）。frontmatterは[DocDag](https://github.com/Kaikei-e/DocDag)のADRプリセットに合わせており、`docdag validate`でグラフを検証できます。
 
 ### ライセンス
 

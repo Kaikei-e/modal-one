@@ -36,7 +36,7 @@ Rough roadmap (non-binding):
 
 The execution path — binary decoder (including LEB128), validator, interpreter, kernel, WASI implementation — is written by hand, without implementation crates such as `wasmparser`.
 
-Tooling is a different matter. The test harness uses the official WebAssembly spec test suite (and a wast parser to drive it), guest programs are built with the standard Rust `wasm32` targets, and [wasmtime](https://github.com/bytecodealliance/wasmtime) serves as a differential-testing oracle and as reference reading.
+Tooling is a different matter. The test harness uses the official WebAssembly spec test suite (and a wast parser to drive it), guest programs are built with the standard Rust `wasm32` targets, and existing runtimes such as [wasmtime](https://github.com/bytecodealliance/wasmtime) and [wasmi](https://github.com/wasmi-labs/wasmi) serve as differential-testing oracles and as reference reading. Which runtime is the oracle for which feature range is decided in ADR-000003.
 
 AI tools are used for study, design discussion, and review — not for generating the execution path.
 
@@ -53,7 +53,7 @@ Modal One draws on prior work in this area, including [k23](https://github.com/J
 
 ### Documentation
 
-Decisions are recorded as ADRs under `docs/adr/` (written in Japanese). ADR-000001 defines the project's principles (with target architecture updated to x86_64 in ADR-000004). Frontmatter follows the [DocDag](https://github.com/Kaikei-e/DocDag) ADR preset; `docdag validate` checks the graph.
+Decisions are recorded as ADRs under `docs/adr/` (written in Japanese). ADR-000001 defines the project's principles (with target architecture updated to x86_64 in ADR-000004, and the choice of differential-testing oracle delegated to ADR-000003 by ADR-000005). Frontmatter follows the [DocDag](https://github.com/Kaikei-e/DocDag) ADR preset; `docdag validate` checks the graph.
 
 ### License
 
